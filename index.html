@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apexflow Market Dollar Hunters | Ehaldart Global FX & Binary</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+  <style>
+    body { background-color: #06090f; color: #e2e8f0; font-family: system-ui, -apple-system, sans-serif; }
+    .bg-card { background-color: #0d131f; }
+    .border-neon { border-color: #00ff66; }
+    .text-neon { color: #00ff66; }
+    .bg-neon { background-color: #00ff66; }
+    .shadow-neon { box-shadow: 0 0 15px rgba(0, 255, 102, 0.3); }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #06090f; }
+    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #00ff66; }
+  </style>
+</head>
+<body class="min-h-screen md:h-screen flex flex-col overflow-x-hidden md:overflow-hidden text-sm">
+
+  <!-- PRELOADER / WELCOME SPLASH SCREEN -->
+  <div id="splash-screen" class="fixed inset-0 z-50 bg-[#06090f] flex flex-col items-center justify-center p-4 transition-opacity duration-700">
+    <div class="text-center space-y-4 max-w-md">
+      
+      <!-- Glowing Animated Logo -->
+      <div class="relative w-24 h-24 mx-auto flex items-center justify-center">
+        <div class="absolute inset-0 rounded-full border-4 border-neon/20 animate-ping"></div>
+        <div class="w-20 h-20 rounded-full bg-gray-900 border-2 border-neon shadow-neon flex items-center justify-center">
+          <span class="text-2xl font-black text-neon tracking-tighter">EGFX</span>
+        </div>
+      </div>
+
+      <!-- Brand Title -->
+      <div>
+        <h1 class="text-2xl md:text-3xl font-extrabold tracking-widest text-neon uppercase">
+          EHALDART GLOBAL FX
+        </h1>
+        <p class="text-xs text-gray-400 tracking-wider mt-1 uppercase">
+          Apexflow Market Dollar Hunters
+        </p>
+      </div>
+
+      <!-- Welcome Message -->
+      <div class="bg-card border border-gray-800 p-3 rounded-lg shadow-lg">
+        <p class="text-xs text-gray-300">
+          Welcome to the Next-Gen AI Trading Desk. Initializing WebSocket stream & Millisecond Speed Boats...
+        </p>
+      </div>
+
+      <!-- Loading Bar Indicator -->
+      <div class="w-full bg-gray-900 h-1.5 rounded-full overflow-hidden border border-gray-800">
+        <div id="splash-progress" class="bg-neon h-full w-0 transition-all duration-300"></div>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- HEADER / BRANDING -->
+  <header class="bg-card border-b border-gray-800 px-4 py-3 flex flex-wrap items-center justify-between gap-2">
+    <div class="flex items-center space-x-3">
+      <div class="w-3 h-3 rounded-full bg-neon shadow-neon animate-pulse"></div>
+      <h1 class="text-base md:text-xl font-bold tracking-wider text-neon">APEXFLOW MARKET DOLLAR HUNTERS</h1>
+      <span class="text-[10px] md:text-xs bg-gray-800 text-gray-400 px-2 py-0.5 rounded border border-gray-700">Ehaldart Global FX & Binary</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button id="btn-login-deriv" class="bg-neon hover:bg-emerald-400 text-black font-bold px-3 py-1.5 rounded text-xs transition shadow-neon">
+        🔑 Connect Deriv Account
+      </button>
+      <div class="text-right">
+        <div class="text-[10px] text-gray-400">Account ID</div>
+        <div id="ui-account-id" class="font-mono text-xs md:text-sm font-semibold text-white">DOT95101040</div>
+      </div>
+      <div class="text-right">
+        <div class="text-[10px] text-gray-400">Balance</div>
+        <div id="ui-balance" class="font-mono text-sm md:text-base font-bold text-neon">$0.00</div>
+      </div>
+      <div class="bg-emerald-900 text-neon border border-neon font-bold px-2 py-1 rounded text-[10px] md:text-xs flex items-center space-x-1">
+        <span>● LIVE</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN WORKSPACE -->
+  <div class="flex-1 flex flex-col lg:flex-row overflow-y-auto lg:overflow-hidden">
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="w-full lg:w-80 bg-card border-b lg:border-b-0 lg:border-r border-gray-800 p-4 flex flex-col space-y-3 shrink-0">
+      <h2 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Deriv Markets (100+ Active)</h2>
+      <select id="select-market" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-white focus:border-neon outline-none text-xs">
+        <option value="R_100">Volatility 100 Index (R_100)</option>
+      </select>
+
+      <!-- ADVANCED AI SPEED BOATS PANEL -->
+      <div class="bg-gray-900 border border-neon/50 p-3 rounded space-y-2">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-neon uppercase">⚡ AI Millisecond Speed Boats</span>
+          <span id="ai-status-badge" class="text-[10px] bg-gray-800 text-gray-400 px-1.5 py-0.5 rounded font-mono">STANDBY</span>
+        </div>
+        <select id="select-speed-boat" class="w-full bg-gray-950 border border-gray-700 rounded p-1.5 text-white text-xs outline-none focus:border-neon">
+          <option value="top_down_trend">🚤 Top-Down Trend Speed Boat (15M Bias + 12-Candle Hold)</option>
+          <option value="even_odd">🚤 Even / Odd Speed Boat (Reversion)</option>
+          <option value="matches">🚤 Matches Speed Boat (Digit Hunter)</option>
+          <option value="differs">🚤 Differs Speed Boat (High Winrate)</option>
+          <option value="rise_fall">🚤 Rise / Fall Speed Boat (Momentum)</option>
+          <option value="over3_under6">🚤 Over 3 / Under 6 Speed Boat (Probability)</option>
+          <option value="multi_low_digits">🚤 Simultaneous Over 0, 1, & 2 Speed Boat</option>
+          <option value="extreme_edges">🚤 Over 6,7 & Under 2,3 Edge Speed Boat</option>
+        </select>
+        <button id="btn-toggle-ai" class="w-full bg-emerald-700 hover:bg-emerald-600 text-white font-bold py-1.5 rounded text-xs transition">
+          Launch Speed Boat
+        </button>
+      </div>
+
+      <!-- ANALYSIS TOOLS PANEL -->
+      <div class="bg-gray-900 border border-gray-700 p-3 rounded space-y-2">
+        <h2 class="text-xs font-bold text-gray-300 uppercase tracking-wider">📈 Market Analysis Tools</h2>
+        <div class="grid grid-cols-2 gap-2 text-xs">
+          <div class="bg-gray-950 p-2 rounded border border-gray-800">
+            <span class="text-gray-500 block text-[10px]">Trend Bias</span>
+            <span id="analysis-trend" class="font-bold text-neon">Analyzing...</span>
+          </div>
+          <div class="bg-gray-950 p-2 rounded border border-gray-800">
+            <span class="text-gray-500 block text-[10px]">Momentum RSI</span>
+            <span id="analysis-rsi" class="font-bold text-white">50.0</span>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="text-xs font-bold text-gray-400 uppercase tracking-wider mt-1">Execution Strategy</h2>
+      <div class="grid grid-cols-2 gap-2">
+        <button id="mode-single" class="bg-gray-800 border border-neon text-neon py-1.5 rounded text-xs font-semibold">Single Order</button>
+        <button id="mode-bulk" class="bg-gray-900 border border-gray-700 text-gray-400 py-1.5 rounded text-xs font-semibold hover:border-gray-500">Bulk Multi-Shot</button>
+      </div>
+
+      <div class="border-t border-gray-800 pt-3 mt-auto">
+        <button id="btn-cashier" class="w-full bg-gray-900 border border-gray-700 hover:border-neon text-gray-300 py-2 rounded text-xs text-left px-3 flex justify-between items-center">
+          <span>Deposit & Cashier</span>
+          <span class="text-neon">➔</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- CENTER AREA -->
+    <main class="flex-1 flex flex-col bg-gray-950 overflow-hidden min-h-[500px]">
+      <!-- TRADING VIEW EMBED -->
+      <div class="flex-1 bg-black relative min-h-[300px]" id="tv_chart_container"></div>
+
+      <div class="bg-card border-t border-gray-800 p-4 grid grid-cols-1 md:grid-cols-12 gap-4">
+        
+        <!-- TRADING DESK -->
+        <div class="md:col-span-5 border-b md:border-b-0 md:border-r border-gray-800 pb-4 md:pb-0 md:pr-4 space-y-3">
+          <div class="flex justify-between items-center">
+            <span class="text-xs font-bold text-gray-400 uppercase">Trade Control Desk</span>
+            <span id="market-price" class="font-mono text-neon font-bold text-base">---.--</span>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="text-xs text-gray-400 block mb-1">Stake / Amount ($)</label>
+              <input type="number" id="input-stake" value="10" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-white focus:border-neon outline-none font-mono">
+            </div>
+            <div>
+              <label class="text-xs text-gray-400 block mb-1">Duration (Ticks / Secs)</label>
+              <div class="flex">
+                <input type="number" id="input-duration" value="5" class="w-full bg-gray-900 border border-gray-700 rounded-l p-2 text-white focus:border-neon outline-none font-mono">
+                <select id="input-duration-unit" class="bg-gray-800 border border-l-0 border-gray-700 rounded-r px-2 text-gray-300 text-xs">
+                  <option value="t">Ticks</option>
+                  <option value="s">Secs</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div id="bulk-controls" class="hidden space-y-1">
+            <label class="text-xs text-neon block">Bulk Contract Multiplier</label>
+            <input type="number" id="input-bulk-count" value="3" min="1" max="10" class="w-full bg-gray-900 border border-neon rounded p-1.5 text-white outline-none font-mono text-xs">
+          </div>
+
+          <div class="grid grid-cols-2 gap-3 pt-1">
+            <button id="btn-trade-higher" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 rounded shadow-lg transition flex items-center justify-center space-x-1">
+              <span>HIGHER (CALL)</span>
+            </button>
+            <button id="btn-trade-lower" class="bg-rose-600 hover:bg-rose-500 text-white font-bold py-2.5 rounded shadow-lg transition flex items-center justify-center space-x-1">
+              <span>LOWER (PUT)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- LOGS CONSOLE -->
+        <div class="md:col-span-7 flex flex-col h-44 md:h-auto">
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-xs font-bold text-gray-400 uppercase">Live WebSocket Console & Speed Boat Logs</span>
+            <button id="btn-clear-logs" class="text-xs text-gray-500 hover:text-gray-300">Clear</button>
+          </div>
+          <div id="logs-container" class="flex-1 bg-gray-950 border border-gray-800 rounded p-2 font-mono text-xs overflow-y-auto space-y-1">
+            <div class="text-gray-500">[System] Apexflow Advanced Millisecond Engine & Speed Boats initialized.</div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- RIGHT SIDEBAR: RISK MANAGEMENT -->
+    <aside class="w-full lg:w-72 bg-card border-t lg:border-t-0 lg:border-l border-gray-800 p-4 flex flex-col space-y-4 shrink-0">
+      <h2 class="text-xs font-bold text-neon uppercase tracking-wider border-b border-gray-800 pb-2">Trader Protection Desk</h2>
+
+      <div class="space-y-3">
+        <div>
+          <label class="text-xs text-gray-400 block mb-1">Target Daily Profit ($)</label>
+          <input type="number" id="risk-target-profit" value="50" class="w-full bg-gray-900 border border-gray-700 rounded p-1.5 text-white font-mono text-xs focus:border-neon outline-none">
+        </div>
+        <div>
+          <label class="text-xs text-gray-400 block mb-1">Max Daily Stop Loss ($) [Circuit Breaker]</label>
+          <input type="number" id="risk-max-loss" value="30" class="w-full bg-gray-900 border border-gray-700 rounded p-1.5 text-white font-mono text-xs focus:border-neon outline-none">
+        </div>
+        <div>
+          <label class="text-xs text-gray-400 block mb-1">Martingale Multiplier</label>
+          <input type="number" id="risk-martingale" value="2.0" step="0.1" class="w-full bg-gray-900 border border-gray-700 rounded p-1.5 text-white font-mono text-xs focus:border-neon outline-none">
+        </div>
+      </div>
+
+      <div class="bg-gray-900 p-3 rounded border border-gray-800 space-y-2 mt-2">
+        <div class="flex justify-between text-xs">
+          <span class="text-gray-400">Rec. Base Stake:</span>
+          <span id="calc-rec-stake" class="text-white font-mono font-bold">$2.00</span>
+        </div>
+        <div class="flex justify-between text-xs">
+          <span class="text-gray-400">Max Consecutive Losses:</span>
+          <span id="calc-max-losses" class="text-rose-400 font-mono font-bold">4 Trades</span>
+        </div>
+      </div>
+
+      <button id="btn-calc-apply" class="w-full bg-gray-800 hover:bg-gray-700 text-neon border border-neon py-1.5 rounded text-xs font-bold">
+        Lock Risk Parameters
+      </button>
+
+      <button id="btn-emergency-flatten" class="w-full bg-rose-900 hover:bg-rose-800 text-white border border-rose-600 py-2 rounded text-xs font-bold tracking-wider mt-auto">
+        🚨 EMERGENCY PANIC FLATTEN
+      </button>
+    </aside>
+
+  </div>
+
+  <script src="derivApi.js"></script>
+  <script src="aiBotsEngine.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
